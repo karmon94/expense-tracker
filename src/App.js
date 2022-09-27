@@ -1,7 +1,12 @@
 import "./App.css";
+import ExpenseForm from "./components/ExpenseForm";
 
 function App() {
-  return <div className="App"></div>;
+  return (
+    <div className="app-container">
+      <ExpenseForm />
+    </div>
+  );
 }
 
 export default App;
