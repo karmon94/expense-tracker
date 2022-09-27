@@ -1,13 +1,13 @@
 .form-container {
   border-radius: 10px;
   background-color: rgb(99, 168, 190);
-  padding: 10px;
   display: flex;
   flex-direction: column;
   row-gap: 10px;
   width: 500px;
   color: white;
   font-size: medium;
+  padding: 10px 0;
 }
 
 .row {
