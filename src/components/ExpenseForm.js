@@ -1,33 +1,50 @@
-import { useState } from "react";
+import { nanoid } from "nanoid";
+import { useContext, useState } from "react";
+import { ExpensesContext } from "../context/ExpensesContext";
 
 import "./ExpenseForm.css";
 
 const ExpenseForm = () => {
+  const expenseCtx = useContext(ExpensesContext);
   const [expense, setExpense] = useState({
     titulo: "",
     cantidad: 0,
     fecha: "",
     categoria: "",
+    error: null,
   });
 
   const handleChange = (e) => {
     e.preventDefault();
-    setExpense({ ...expense, [e.target.name]: e.target.value });
+    setExpense({ ...expense, [e.target.name]: e.target.value, error: null });
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // const expenseData = {
-    //   title: enteredTitle,
-    //   amount: enteredAmount,
-    //   date: new Date(enteredDate),
-    // };
+    if (
+      expense.titulo &&
+      expense.cantidad &&
+      expense.fecha &&
+      expense.categoria
+    ) {
+      const expenseData = {
+        id: nanoid(),
+        titulo: expense.titulo,
+        cantidad: expense.cantidad,
+        fecha: new Date(expense.fecha),
+        categoria: expense.categoria,
+      };
 
-    // props.onSaveExpenseData(expenseData);
-    // setEnteredTitle("");
-    // setEnteredAmount("");
-    // setEnteredDate("");
+      expenseCtx.addExpense(expenseData);
+
+      // setExpense({ titulo: "", cantidad: 0, fecha: "", categoria: "" });
+    } else {
+      setExpense({
+        ...expense,
+        error: "Complete todos los campos del formulario!",
+      });
+    }
   };
 
   return (
@@ -50,7 +67,7 @@ const ExpenseForm = () => {
             id="cantidad"
             type="number"
             name="cantidad"
-            min="0.01"
+            min="0"
             step="0.01"
             value={expense.cantidad}
             onChange={handleChange}
@@ -78,6 +95,7 @@ const ExpenseForm = () => {
             value={expense.categoria}
             onChange={handleChange}
           >
+            <option></option>
             <option value="comida">Comida</option>
             <option value="educacion">Educación</option>
             <option value="entretenimiento">Entretenimiento</option>
@@ -85,6 +103,10 @@ const ExpenseForm = () => {
             <option value="viajes">Viajes</option>
           </select>
         </div>
+      </div>
+
+      <div className="form-error">
+        {expense.error && <p>{expense.error}</p>}
       </div>
 
       <button type="submit" className="btn-submit">

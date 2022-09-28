@@ -1,7 +1,7 @@
 import "./ExpensesItem.css";
 
 const ExpensesItem = ({ expense }) => {
-  const month = expense.fecha.toLocaleString("es-MX", { month: "long" });
+  const month = expense.fecha.toLocaleString("es-MX", { month: "short" });
   const day = expense.fecha.toLocaleString("es-MX", { day: "2-digit" });
   const year = expense.fecha.getFullYear();
 

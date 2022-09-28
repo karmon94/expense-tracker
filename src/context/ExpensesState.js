@@ -7,17 +7,17 @@ const ExpensesState = (props) => {
     expenses: [
       {
         id: 0,
-        titulo: "Internet",
-        cantidad: "600.00",
-        fecha: new Date(2022, 1, 15),
-        categoria: "Entretenimiento",
-      },
-      {
-        id: 1,
         titulo: "Despensa",
         cantidad: "1200.00",
         fecha: new Date(2022, 1, 20),
         categoria: "Comida",
+      },
+      {
+        id: 1,
+        titulo: "Internet",
+        cantidad: "600.00",
+        fecha: new Date(2022, 1, 15),
+        categoria: "Entretenimiento",
       },
       {
         id: 2,
@@ -31,8 +31,12 @@ const ExpensesState = (props) => {
 
   const [state, dispatch] = useReducer(ExpensesReducer, initialState);
 
+  const addExpense = (expense) => {
+    dispatch({ type: "ADD_EXPENSE", payload: expense });
+  };
+
   return (
-    <ExpensesContext.Provider value={{ expenses: state.expenses }}>
+    <ExpensesContext.Provider value={{ expenses: state.expenses, addExpense }}>
       {props.children}
     </ExpensesContext.Provider>
   );
