@@ -2,14 +2,23 @@
 
 This project if an expense tracker app demo
 
-## Available Scripts
+## Intructions for usage
 
-In the project directory, you can run:
+Download .zip or clone project.
+
+In the project directory run:
+
+### `npm install`
+
+Then run:
 
 ### `npm start`
 
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+The expense tracker has 3 demo expenses added, you can add more expenses.
+
+Click on the plus button (+) to add more expenses.
+
+You can change between tabs and see total expenses by category.
