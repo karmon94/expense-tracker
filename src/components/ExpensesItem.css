@@ -15,6 +15,7 @@
 
 .expense-title {
   margin-left: 10px;
+  text-transform: capitalize;
 }
 
 .expense-date {
