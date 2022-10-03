@@ -4,7 +4,7 @@ import { ExpensesContext } from "../context/ExpensesContext";
 
 import "./ExpenseForm.css";
 
-const ExpenseForm = ({ onCancel }) => {
+const ExpenseForm = ({ onHideForm }) => {
   const expenseCtx = useContext(ExpensesContext);
   const [expense, setExpense] = useState({
     titulo: "",
@@ -37,6 +37,7 @@ const ExpenseForm = ({ onCancel }) => {
       };
 
       expenseCtx.addExpense(expenseData);
+      onHideForm();
 
       // setExpense({ titulo: "", cantidad: 0, fecha: "", categoria: "" });
     } else {
@@ -49,7 +50,7 @@ const ExpenseForm = ({ onCancel }) => {
 
   const cancelHandler = (e) => {
     e.preventDefault();
-    onCancel();
+    onHideForm();
   };
   return (
     <form className="form-container" onSubmit={handleSubmit}>

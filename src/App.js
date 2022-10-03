@@ -16,7 +16,7 @@ function App() {
     setAddExpense(true);
   };
 
-  const onCancelHandler = () => {
+  const onHideFormHandler = () => {
     setAddExpense(false);
   };
 
@@ -27,7 +27,7 @@ function App() {
   return (
     <div className="app-container">
       {addExpense ? (
-        <ExpenseForm onCancel={onCancelHandler} />
+        <ExpenseForm onHideForm={onHideFormHandler} />
       ) : (
         <Tooltip title="Add expense">
           <Fab color="primary" aria-label="add" onClick={addExpenseHandler}>
