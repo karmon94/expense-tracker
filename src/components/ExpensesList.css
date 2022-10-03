@@ -3,3 +3,25 @@
   background-color: rgb(36, 36, 36);
   border-radius: 10px;
 }
+
+h3,
+p {
+  text-align: center;
+  color: white;
+}
+
+.expenses-list {
+  min-height: 300px;
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+.total-expenses {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  font-weight: bold;
+  color: white;
+  margin-right: 20px;
+  column-gap: 30px;
+}

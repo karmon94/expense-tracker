@@ -4,7 +4,7 @@ import { ExpensesContext } from "../context/ExpensesContext";
 
 import "./ExpenseForm.css";
 
-const ExpenseForm = () => {
+const ExpenseForm = ({ onCancel }) => {
   const expenseCtx = useContext(ExpensesContext);
   const [expense, setExpense] = useState({
     titulo: "",
@@ -47,6 +47,10 @@ const ExpenseForm = () => {
     }
   };
 
+  const cancelHandler = (e) => {
+    e.preventDefault();
+    onCancel();
+  };
   return (
     <form className="form-container" onSubmit={handleSubmit}>
       <div className="row">
@@ -99,8 +103,8 @@ const ExpenseForm = () => {
             <option value="comida">Comida</option>
             <option value="educacion">Educación</option>
             <option value="entretenimiento">Entretenimiento</option>
-            <option value="gastos">Gastos</option>
             <option value="viajes">Viajes</option>
+            <option value="otros">Otros</option>
           </select>
         </div>
       </div>
@@ -109,9 +113,19 @@ const ExpenseForm = () => {
         {expense.error && <p>{expense.error}</p>}
       </div>
 
-      <button type="submit" className="btn-submit">
-        Agregar
-      </button>
+      <div className="buttons-container">
+        <button type="submit" className="btn btn-submit">
+          Agregar
+        </button>
+
+        <button
+          type="button"
+          className="btn btn-cancel"
+          onClick={cancelHandler}
+        >
+          Cancelar
+        </button>
+      </div>
     </form>
   );
 };
